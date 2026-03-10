@@ -1,0 +1,334 @@
+/* --- STILURI GENERALE --- */
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #fcf8f2;
+}
+
+/* --- NAVBAR & USER INFO --- */
+.navbar {
+    background-color: #ffc107 !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.navbar-brand {
+    font-weight: 900;
+    color: #333 !important;
+    font-size: 1.5rem;
+}
+.nav-link {
+    font-weight: 700;
+    color: #444 !important;
+}
+.nav-link:hover {
+    color: #fd7e14 !important;
+}
+.user-info {
+    background-color: rgba(255,255,255,0.9);
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #333;
+    text-decoration: none;
+}
+
+/* --- HERO SECTION & BUTOANE --- */
+.hero-section {
+    background-color: #ffe066;
+    border-radius: 30px;
+    padding: 60px 20px;
+    margin-top: 30px;
+}
+.btn-custom {
+    background-color: #fd7e14;
+    color: white;
+    font-weight: 800;
+    border-radius: 25px;
+    padding: 10px 25px;
+    border: none;
+}
+.btn-custom:hover { background-color: #e86b0c; color: white; }
+
+/* --- PAGINA ADOPTIE (FILTRE SI CARDURI) --- */
+.filter-sidebar {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    position: sticky;
+    top: 100px;
+}
+.animal-card {
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+    background-color: white;
+    height: 100%;
+    position: relative;
+}
+.animal-card:hover { transform: translateY(-10px); }
+.animal-card img { height: 220px; object-fit: cover; }
+
+.badge-custom {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #e83e8c;
+    color: white;
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    border-radius: 15px;
+    z-index: 10;
+}
+
+/* --- PAGINA PROFIL ANIMAL --- */
+.profile-img-main {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+.gallery-img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.gallery-img:hover { transform: scale(1.05); }
+.btn-adopt {
+    background-color: #fd7e14;
+    color: white;
+    font-weight: 900;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    padding: 15px;
+    border: none;
+    transition: background-color 0.3s, transform 0.2s;
+    }
+.btn-adopt:hover { background-color: #e86b0c; color: white; transform: translateY(-3px); }
+.trait-badge {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+    border-radius: 20px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+/* --- PAGINA CUM ADOPT (PASII) --- */
+.step-card {
+    background-color: white;
+    border-radius: 25px;
+    padding: 40px 30px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    text-align: center;
+    height: 100%;
+    position: relative;
+    margin-bottom: 30px;
+    transition: transform 0.3s;
+}
+.step-card:hover { transform: translateY(-5px); }
+.step-number {
+    width: 70px;
+    height: 70px;
+    color: white;
+    font-size: 2rem;
+    font-weight: 900;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px auto;
+    border: 5px solid #fcf8f2;
+    box-shadow: 0 4px 10px rgba(253, 126, 20, 0.3);
+}
+/* Culori specifice pentru bulinele cu cifre */
+.step-1 .step-number { background-color: #0dcaf0; box-shadow: 0 4px 10px rgba(13, 202, 240, 0.3);}
+.step-2 .step-number { background-color: #ffc107; box-shadow: 0 4px 10px rgba(255, 193, 7, 0.3); color: #333; }
+.step-3 .step-number { background-color: #e83e8c;  box-shadow: 0 4px 10px rgba(232, 62, 140, 0.3);}
+.step-4 .step-number { background-color: #20c997; box-shadow: 0 4px 10px rgba(32, 201, 151, 0.3);}
+.faq-section {
+    background-color: white;
+    border-radius: 25px;
+    padding: 40px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin-top: 50px;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #fff3cd;
+    color: #856404;
+    font-weight: bold;
+}
+/* --- PAGINA POVESTI (TESTIMONIALE) --- */
+.stories-hero {
+    background-color: #e8f7fa;
+    border-radius: 30px;
+    padding: 50px 20px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+.story-card {
+    background-color: white;
+    border: none;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    margin-bottom: 40px;
+    transition: transform 0.3s ease;
+}
+.story-card:hover {
+    transform: translateY(-5px);
+}
+.story-img-container { position: relative; height: 300px; overflow: hidden; }
+.story-img { width: 100%; height: 100%; object-fit: cover; }
+.story-badge {
+    position: absolute; bottom: 15px; left: 15px;
+    background-color: #fd7e14; color: white;
+    padding: 5px 15px; border-radius: 20px; font-weight: bold;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.story-content {
+    padding: 30px;
+}
+
+.quote-icon {
+    color: #ffc107;
+    font-size: 2rem;
+    line-height: 1;
+    margin-bottom: 10px;
+    font-family: serif;
+}
+.testimonial-text {
+    font-size: 1.1rem; font-style: italic; color: #555;
+    margin-bottom: 20px; border-left: 4px solid #ffc107; padding-left: 15px;
+}
+.quote-icon { color: #ffc107; font-size: 2rem; font-family: serif; }
+
+/* --- PAGINA CONTACT --- */
+.contact-card {
+    background-color: white;
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    margin-bottom: 50px;
+}
+.contact-icon {
+    width: 50px; height: 50px;
+    background-color: #ffe066; color: #333;
+    font-size: 1.5rem; display: flex;
+    align-items: center; justify-content: center;
+    border-radius: 50%; margin-right: 15px;
+}
+.form-control {
+    background-color: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 15px;
+    padding: 12px 20px;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: #fd7e14;
+    box-shadow: none;
+}
+
+.btn-submit {
+    background-color: #fd7e14;
+    color: white;
+    font-weight: bold;
+    border-radius: 25px;
+    padding: 12px 30px;
+    border: none;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #e86b0c;
+}
+.map-container {
+    border-radius: 25px; overflow: hidden;
+    height: 400px; width: 100%; margin-top: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+.map-container iframe { width: 100%; height: 100%; border: 0; }
+
+/* --- FOOTER --- */
+.footer {
+    background-color: #0dcaf0;
+    color: #333;
+    padding: 20px 0;
+    margin-top: 50px;
+}
+
+/* --- PAGINA PROFIL UTILIZATOR --- */
+.profile-card {
+    background-color: white;
+    border-radius: 25px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.user-avatar {
+    width: 80px;
+    height: 80px;
+    background-color: #0dcaf0;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.dashboard-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin-bottom: 25px;
+}
+
+
+.mini-animal-img {
+    width: 100px !important;  /* Fortam latimea la 100px */
+    height: 100px !important; /* Fortam inaltimea la 100px */
+    min-width: 100px;
+    object-fit: cover;        /* Pastreaza proportiile, fara sa alungeasca poza */
+    border-radius: 15px;
+}
+
+.status-badge {
+    font-size: 0.8rem;
+    padding: 6px 15px;
+    border-radius: 20px;
+    white-space: nowrap;      /* Impiedica textul sa sara pe randul doi */
+    display: inline-block;
+}
+
+.btn-vezi-mic {
+    border-radius: 20px;
+    font-size: 0.85rem;
+    padding: 5px 15px;
+    white-space: nowrap;
+}
+
+/* Aliniere corecta pentru randurile de animale */
+.animal-row-item {
+    display: flex;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adopt-a-Buddy | Contact</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">🐾 Adopt-a-Buddy</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Acasă</a></li>
+                    <li class="nav-item"><a class="nav-link" href="adoptie.html">Găsește un prieten</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cum-adopt.html">Cum Adopt?</a></li>
+                    <li class="nav-item"><a class="nav-link" href="povesti.html">Povești Fericite</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <a href="profil-utilizator.html" class="user-info">
+                        <span>👋 Salut, Alex Preda!</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mt-5 min-vh-100">
+        
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold mb-3">Suntem aici pentru tine! 📞</h1>
+            <p class="lead text-muted mx-auto" style="max-width: 600px;">
+                Fie că vrei să adopți, să donezi sau doar să pui o întrebare, echipa noastră abia așteaptă să te ajute.
+            </p>
+        </div>
+
+        <div class="contact-card row g-5 align-items-center">
+            
+            <div class="col-lg-5">
+                <h3 class="fw-bold mb-4">Adăpostul "Suflete Neclintite"</h3>
+                
+                <div class="d-flex align-items-center mb-4">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <h6 class="fw-bold mb-0">Vino în vizită</h6>
+                        <p class="text-muted mb-0">Str. Nicolae Romanescu, Nr. 15<br>Craiova, Dolj, România</p>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center mb-4">
+                    <div class="contact-icon">☎️</div>
+                    <div>
+                        <h6 class="fw-bold mb-0">Sună-ne</h6>
+                        <p class="text-muted mb-0">0251 123 456<br><small>(Luni - Vineri: 10:00 - 18:00)</small></p>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center mb-4">
+                    <div class="contact-icon">✉️</div>
+                    <div>
+                        <h6 class="fw-bold mb-0">Scrie-ne</h6>
+                        <p class="text-muted mb-0">adoptii@adopt-a-buddy.ro</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="bg-light p-4 rounded-4">
+                    <h4 class="fw-bold mb-4 text-center">Trimite-ne un mesaj rapid</h4>
+                    
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="numeInput" class="form-label fw-bold">Numele tău</label>
+                                <input type="text" class="form-control" id="numeInput" value="Alex Preda" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="emailInput" class="form-label fw-bold">Email-ul tău</label>
+                                <input type="email" class="form-control" id="emailInput" value="alex@email.com" readonly>
+                            </div>
+                            
+                            <div class="col-12">
+                                <label for="subiectSelect" class="form-label fw-bold">Despre ce vrei să vorbim?</label>
+                                <select class="form-select form-control" id="subiectSelect">
+                                    <option selected>Vreau să aflu mai multe despre un animal</option>
+                                    <option value="1">Vreau să donez hrană/pături</option>
+                                    <option value="2">Vreau să fiu voluntar</option>
+                                    <option value="3">Altă întrebare</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="mesajInput" class="form-label fw-bold">Mesajul tău</label>
+                                <textarea class="form-control" id="mesajInput" rows="4" placeholder="Scrie aici..."></textarea>
+                            </div>
+
+                            <div class="col-12 mt-4">
+                                <button type="button" class="btn-submit">Trimite Mesajul 🐾</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+        </div> <h3 class="fw-bold mb-4 text-center">Unde ne găsești</h3>
+        <div class="map-container mb-5">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2853.4862529731236!2d23.805566376510657!3d44.30058867107775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4752d7658c148ca5%3A0xe5a3ebda89b4fdf3!2sParcul%20Nicolae%20Romanescu!5e0!3m2!1sro!2sro!4v1709900000000!5m2!1sro!2sro" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+    </main>
+
+    <footer class="footer text-center">
+        <div class="container">
+            <p class="mb-0 fw-bold">© 2026 Adopt-a-Buddy. Salvăm vieți împreună! 🐾</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adopt-a-Buddy | Profilul Meu</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">🐾 Adopt-a-Buddy</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Acasă</a></li>
+                    <li class="nav-item"><a class="nav-link" href="adoptie.html">Găsește un prieten</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cum-adopt.html">Cum Adopt?</a></li>
+                    <li class="nav-item"><a class="nav-link" href="povesti.html">Povești Fericite</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <a href="profil-utilizator.html" class="user-info shadow-sm">
+                        <span>👋 Salut, Alex!</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mt-5 min-vh-100">
+        
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="profile-card">
+                    <div class="user-avatar shadow-sm">A</div>
+                    <h3 class="fw-bold mb-1">Alex Preda</h3>
+                    <p class="text-muted mb-4">Membru din Martie 2026</p>
+                    
+                    <div class="text-start mb-4">
+                        <p class="mb-2"><strong>Email:</strong><br> alex@email.com</p>
+                        <p class="mb-2"><strong>Telefon:</strong><br> 0722 123 456</p>
+                        <p class="mb-0"><strong>Adresă:</strong><br> Craiova, Dolj, România</p>
+                    </div>
+                    
+                    <button class="btn btn-outline-dark w-100 rounded-pill mb-2">Editează Profilul</button>
+                    <a href="#" class="btn btn-light w-100 rounded-pill text-danger fw-bold">Deconectare</a>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                
+                <h3 class="fw-bold mb-4">Panoul Meu</h3>
+
+                <div class="dashboard-card border-start border-warning border-5">
+                    <h5 class="fw-bold mb-3">🐶 Cereri de adopție active</h5>
+                    
+                    <div class="animal-row-item shadow-sm">
+                        <img src="imagini/poza1.jpg" class="mini-animal-img me-3" alt="Max">
+                        <div class="flex-grow-1">
+                             <h6 class="fw-bold mb-1">Câinele Max</h6>
+                             <p class="text-muted small mb-0">Cerere trimisă pe: 5 Martie 2026</p>
+                        </div>
+                        <div class="ms-2">
+                             <span class="status-badge bg-warning text-dark fw-bold">⏳ În așteptare</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card border-start border-info border-5">
+                    <h5 class="fw-bold mb-3">❤️ Animale salvate la favorite</h5>
+                    
+                   <div class="animal-row-item shadow-sm">
+                        <img src="imagini/poza8.jpg" class="mini-animal-img me-3" alt="Luna">
+                        <div class="flex-grow-1">
+                             <h6 class="fw-bold mb-1">Pisica Luna</h6>
+                             <p class="text-muted small mb-0">Adăpostul "Suflete Neclintite"</p>
+                        </div>
+                        <div class="ms-2">
+                            <a href="profil-animal.html" class="btn btn-outline-dark btn-vezi-mic">Vezi din nou</a>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center bg-light p-3 rounded-4">
+                        <img src="imagini/poza4.jpg" class="mini-animal-img me-3" alt="Bella">
+                        <div class="flex-grow-1">
+                            <h6 class="fw-bold mb-1">Cățelușa Bella</h6>
+                            <p class="text-muted small mb-0">Urgent - Caută foster</p>
+                        </div>
+                        <div class="text-end">
+                            <a href="profil-animal.html" class="btn btn-sm btn-outline-dark rounded-pill px-3">Vezi din nou</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="footer text-center">
+        <div class="container">
+            <p class="mb-0 fw-bold">© 2026 Adopt-a-Buddy. Salvăm vieți împreună! 🐾</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
