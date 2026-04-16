@@ -1,169 +1,110 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AdoptABuddy.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using AdoptABuddy.Models;
+using modelMVC.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace modelMVC.Controllers
 {
     public class AnimalsController : Controller
     {
-        private readonly AdoptBuddyContext _context;
+        // Aducem toate cele 3 servicii pentru a indeplini cerinta profesorului (Fara Context direct!)
+        private readonly IAnimalService _animalService;
+        private readonly ICategoryService _categoryService;
+        private readonly IShelterService _shelterService;
 
-        public AnimalsController(AdoptBuddyContext context)
+        public AnimalsController(IAnimalService animalService, ICategoryService categoryService, IShelterService shelterService)
         {
-            _context = context;
+            _animalService = animalService;
+            _categoryService = categoryService;
+            _shelterService = shelterService;
         }
 
-        // GET: Animals
+        // --- CITIRE (READ) - Afiseaza tabelul ---
         public async Task<IActionResult> Index()
         {
-            var adoptBuddyContext = _context.Animals.Include(a => a.Category).Include(a => a.Shelter);
-            return View(await adoptBuddyContext.ToListAsync());
+            var animals = await _animalService.GetAnimalsForAdoption();
+            return View(animals);
         }
 
-        // GET: Animals/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // --- CREARE (CREATE) - Afiseaza formularul ---
+        public async Task<IActionResult> Create()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            // Folosim serviciile pentru a popula meniurile Dropdown cu Numele categoriilor
+            ViewData["CategoryId"] = new SelectList(await _categoryService.GetAllCategories(), "Id", "Name");
+            ViewData["ShelterId"] = new SelectList(await _shelterService.GetAllShelters(), "Id", "Name");
 
-            var animal = await _context.Animals
-                .Include(a => a.Category)
-                .Include(a => a.Shelter)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (animal == null)
-            {
-                return NotFound();
-            }
-
-            return View(animal);
-        }
-
-        // GET: Animals/Create
-        public IActionResult Create()
-        {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
-            ViewData["ShelterId"] = new SelectList(_context.Shelters, "Id", "Name");
             return View();
         }
 
-        // POST: Animals/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Age,Description,CategoryId,ShelterId")] Animal animal)
+        public async Task<IActionResult> Details(int id)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(animal);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", animal.CategoryId);
-            ViewData["ShelterId"] = new SelectList(_context.Shelters, "Id", "Name", animal.ShelterId);
+            var animal = await _animalService.GetAnimalById(id);
+            if (animal == null) return NotFound();
             return View(animal);
         }
-
-        // GET: Animals/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // --- EDITARE (GET) - Afiseaza formularul cu datele incarcate ---
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var animal = await _animalService.GetAnimalById(id);
+            if (animal == null) return NotFound();
 
-            var animal = await _context.Animals.FindAsync(id);
-            if (animal == null)
-            {
-                return NotFound();
-            }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", animal.CategoryId);
-            ViewData["ShelterId"] = new SelectList(_context.Shelters, "Id", "Name", animal.ShelterId);
+            // Trebuie sa populam meniurile dropdown, exact ca la Create, 
+            // dar de data asta le spunem sa preselecteze valoarea pe care o are deja animalul
+            ViewData["CategoryId"] = new SelectList(await _categoryService.GetAllCategories(), "Id", "Name", animal.CategoryId);
+            ViewData["ShelterId"] = new SelectList(await _shelterService.GetAllShelters(), "Id", "Name", animal.ShelterId);
+
             return View(animal);
         }
-
-        // POST: Animals/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Age,Description,CategoryId,ShelterId")] Animal animal)
+        public async Task<IActionResult> Edit(int id, Animal animal)
         {
-            if (id != animal.Id)
-            {
-                return NotFound();
-            }
+            if (id != animal.Id) return NotFound();
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(animal);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!AnimalExists(animal.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                await _animalService.UpdateAnimal(animal); // Serviciul se ocupa de salvare 
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", animal.CategoryId);
-            ViewData["ShelterId"] = new SelectList(_context.Shelters, "Id", "Name", animal.ShelterId);
             return View(animal);
         }
-
-        // GET: Animals/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // --- STERGERE (GET) - Afiseaza pagina unde te intreaba "Esti sigur?" ---
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var animal = await _context.Animals
-                .Include(a => a.Category)
-                .Include(a => a.Shelter)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (animal == null)
-            {
-                return NotFound();
-            }
+            var animal = await _animalService.GetAnimalById(id);
+            if (animal == null) return NotFound();
 
             return View(animal);
         }
-
-        // POST: Animals/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var animal = await _context.Animals.FindAsync(id);
-            if (animal != null)
-            {
-                _context.Animals.Remove(animal);
-            }
-
-            await _context.SaveChangesAsync();
+            await _animalService.DeleteAnimal(id); // Verbul DELETE 
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AnimalExists(int id)
+        // --- CREARE (CREATE) - Salveaza datele in baza de date ---
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Animal animal)
         {
-            return _context.Animals.Any(e => e.Id == id);
+            if (ModelState.IsValid)
+            {
+                await _animalService.CreateAnimal(animal);
+                return RedirectToAction(nameof(Index)); // Ne intoarce la lista dupa salvare
+            }
+
+            // Daca ceva a mers prost, reincarcam meniurile
+            ViewData["CategoryId"] = new SelectList(await _categoryService.GetAllCategories(), "Id", "Name", animal.CategoryId);
+            ViewData["ShelterId"] = new SelectList(await _shelterService.GetAllShelters(), "Id", "Name", animal.ShelterId);
+
+            return View(animal);
         }
     }
 }
