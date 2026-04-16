@@ -9,6 +9,9 @@ namespace AdoptABuddy.Models
         public int Age { get; set; }
         public string? Description { get; set; }
 
+        // Aici stocam calea catre poza
+        public string? ImageUrl { get; set; }
+
         // Relatia cu Categoria
         public int CategoryId { get; set; }
         public Category? Category { get; set; }
