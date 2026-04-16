@@ -1,0 +1,111 @@
+﻿@page
+@model modelMVC.Views.Home.CumAdoptModel
+@{
+}
+<body>
+
+   
+
+    <main class="container mt-5 min-vh-100">
+        
+        <div class="text-center mb-5">
+            <h1 class="display-5 fw-bold mb-3">Cum funcționează adopția? 🤔</h1>
+            <p class="lead text-muted">Am făcut procesul cât mai simplu posibil. În doar 4 pași poți salva o viață!</p>
+        </div>
+
+        <div class="row g-4">
+            
+            <div class="col-md-6 col-lg-3">
+                <div class="step-card step-1">
+                    <div class="step-number">1</div>
+                    <h5 class="fw-bold mb-3">Găsește Prietenul</h5>
+                    <p class="text-muted small">Explorează galeria noastră și găsește animalul care se potrivește cel mai bine cu stilul tău de viață.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="step-card step-2">
+                    <div class="step-number">2</div>
+                    <h5 class="fw-bold mb-3">Completează Formularul</h5>
+                    <p class="text-muted small">Apasă pe "Vreau să adopt" pe profilul lui și răspunde la câteva întrebări scurte despre tine.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="step-card step-3">
+                    <div class="step-number">3</div>
+                    <h5 class="fw-bold mb-3">Să ne cunoaștem</h5>
+                    <p class="text-muted small">Te invităm la adăpostul nostru din Craiova pentru o scurtă vizită de cunoaștere (joacă garantată!).</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="step-card step-4">
+                    <div class="step-number">4</div>
+                    <h5 class="fw-bold mb-3">Mergem Acasă!</h5>
+                    <p class="text-muted small">Dacă totul decurge bine, semnezi contractul de adopție și pleci acasă cu noul tău membru al familiei.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="faq-section">
+                    <h3 class="fw-bold text-center mb-4">Întrebări Frecvente</h3>
+                    
+                    <div class="accordion" id="accordionFAQ">
+                        
+                        <div class="accordion-item border-0 border-bottom mb-2">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Cât costă să adopt un animal?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionFAQ">
+                                <div class="accordion-body text-muted">
+                                    Adopția în sine este <strong>100% gratuită</strong>. Totuși, ne bucurăm dacă poți face o donație simbolică pentru a acoperi costurile vaccinării și microcipării pe care le-am suportat noi. Această donație ne ajută să salvăm alte animale.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item border-0 border-bottom mb-2">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Animalele sunt vaccinate și sterilizate?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionFAQ">
+                                <div class="accordion-body text-muted">
+                                    Da! Toate animalele adulte care pleacă de la noi sunt deparazitate, vaccinate, microcipate și sterilizate (conform legii). În cazul puilor, sterilizarea este obligatorie la vârsta potrivită prin contract.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item border-0">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Ce se întâmplă dacă nu ne înțelegem cu el acasă?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionFAQ">
+                                <div class="accordion-body text-muted">
+                                    Înțelegem că uneori adaptarea poate fi dificilă. Oferim asistență și sfaturi în primele săptămâni. Dacă lucrurile chiar nu funcționează, animalul <strong>trebuie returnat exclusiv adăpostului nostru</strong> (este interzisă abandonarea sau darea lui unei alte persoane fără acordul nostru).
+                                </div>
+                            </div>
+                        </div>
+
+                    </div> <div class="text-center mt-4">
+                    <a href="contact.html" class="btn btn-outline-dark rounded-pill px-4">Am altă întrebare</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</main>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
