@@ -1,14 +1,27 @@
 using AdoptABuddy.Models;
 using Microsoft.EntityFrameworkCore;
+using modelMVC.Repositories;
+using modelMVC.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+// Adauga aceste linii pentru a inregistra Repository-urile si Serviciile
+builder.Services.AddScoped<IRepository<Animal>, AnimalRepository>();
+builder.Services.AddScoped<IAnimalService, AnimalService>();
 
+builder.Services.AddScoped<IRepository<Category>, CategoryRepository>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+
+builder.Services.AddScoped<IRepository<Shelter>, ShelterRepository>();
+builder.Services.AddScoped<IShelterService, ShelterService>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 // ...
 builder.Services.AddDbContext<AdoptBuddyContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+
 
 var app = builder.Build();
 
