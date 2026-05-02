@@ -18,6 +18,9 @@ builder.Services.AddScoped<IShelterService, ShelterService>();
 builder.Services.AddScoped<IRepository<ContactMessage>, ContactMessageRepository>();
 builder.Services.AddScoped<IContactMessageService, ContactMessageService>();
 
+builder.Services.AddScoped<IRepository<AdoptionStory>, AdoptionStoryRepository>();
+builder.Services.AddScoped<IAdoptionStoryService, AdoptionStoryService>();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
