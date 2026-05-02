@@ -1,81 +1,58 @@
-﻿@page
-@model modelMVC.Views.Home.PovestiModel
+﻿@model IEnumerable<modelMVC.Models.AdoptionStory>
+
 @{
+    ViewData["Title"] = "Povești Fericite";
 }
-<body>
 
+<div class="container mt-5 mb-5 text-center">
+    <h1 class="fw-bold mb-4">Povești care ne topesc inima ❤️</h1>
+    <p class="text-muted mb-5">Acestea sunt doar câteva dintre sufletele care și-au găsit o familie iubitoare prin Adopt-a-Buddy.</p>
 
-
-    <main class="container mt-5 min-vh-100">
-        
-        <div class="stories-hero shadow-sm">
-            <h1 class="display-4 fw-bold text-dark mb-3">Povești Fericite 📸</h1>
-            <p class="lead text-muted mx-auto" style="max-width: 700px;">
-                Aici sărbătorim finalurile fericite. Acestea sunt doar câteva dintre sufletele care și-au găsit o familie datorită vouă, comunitatea din Craiova.
-            </p>
+    @if (!Model.Any())
+    {
+        <!-- Afisam asta doar daca nu am introdus inca nicio poveste in baza de date -->
+        <div class="alert alert-info rounded-4 py-4">
+            <p class="mb-0">Momentan nu avem nicio poveste înregistrată în sistem. Fii tu primul care scrie una!</p>
         </div>
-
-        <div class="row g-5 justify-content-center">
-
-            <div class="col-lg-10">
-                <div class="story-card row g-0">
-                    <div class="col-md-5 story-img-container">
-                        <img src="imagini/poza5.jpg" class="story-img" alt="Bruno și familia lui">
-                        <span class="story-badge">Adopție: Iulie 2025</span>
-                    </div>
-                    <div class="col-md-7 d-flex align-items-center">
-                        <div class="story-content">
-                            <h3 class="fw-bold mb-3">Bătrânul Bruno și-a găsit liniștea</h3>
-                            <div class="quote-icon">"</div>
-                            <p class="testimonial-text">
-                                "Nu credeam că un câine senior ne poate schimba viața atât de mult. Bruno a venit la noi plin de frică, dar în doar câteva luni a devenit cel mai blând partener de plimbare. Nu vă fie teamă să adoptați un câine mai în vârstă!"
-                            </p>
-                            <p class="text-muted fw-bold mb-0">— Familia Radu</p>
+    }
+    else
+    {
+        <div class="row justify-content-center text-start">
+            @foreach (var story in Model)
+            {
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card shadow-sm border-0 rounded-4 h-100 p-3">
+                        @if (!string.IsNullOrEmpty(story.ImageUrl))
+                        {
+                            <img src="@story.ImageUrl" class="card-img-top rounded-3 mb-3" alt="@story.AnimalName" style="height: 250px; object-fit: cover;">
+                        }
+                        
+                        <div class="card-body p-0">
+                            <span class="badge bg-success rounded-pill mb-2 px-3 py-2">
+                                Adopție: @story.AdoptionDate.ToString("MMMM yyyy")
+                            </span>
+                            <h4 class="card-title fw-bold">@story.AnimalName și @story.AdopterName</h4>
+                            
+                            <!-- Aceasta este bara galbena verticala din design-ul tau -->
+                            <blockquote class="blockquote mt-3 ps-3" style="border-left: 4px solid #ffc107;">
+                                <p class="small fst-italic text-muted">
+                                    "@story.StoryText"
+                                </p>
+                            </blockquote>
+                            
+                            <p class="text-end small text-muted mb-0">— Familia @story.AdopterName</p>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
+        </div>
+    }
 
-            <div class="col-lg-5">
-                <div class="story-card h-100">
-                    <div class="story-img-container" style="height: 250px;">
-                        <img src="imagini/poza6.jpg" class="story-img" alt="Pisica Mia">
-                        <span class="story-badge bg-info text-dark">Adopție: Decembrie 2025</span>
-                    </div>
-                    <div class="story-content">
-                        <h4 class="fw-bold mb-3">Mia, miracolul de Crăciun</h4>
-                        <p class="testimonial-text">
-                            "Am găsit-o pe Mia pe site-ul vostru fix în Ajunul Crăciunului. A fost dragoste la prima vedere. Acum este șefa casei și doarme doar pe laptopul meu când încerc să lucrez."
-                        </p>
-                        <p class="text-muted fw-bold mb-0">— Elena T.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-5">
-                <div class="story-card h-100">
-                    <div class="story-img-container" style="height: 250px;">
-                        <img src="imagini/poza7.jpg" class="story-img" alt="Câinele Toby">
-                        <span class="story-badge bg-success">Adopție: Februarie 2026</span>
-                    </div>
-                    <div class="story-content">
-                        <h4 class="fw-bold mb-3">Toby, campionul la agilitate</h4>
-                        <p class="testimonial-text">
-                            "Eram în căutarea unui câine cu care să pot alerga dimineața. Toby este incredibil! Ne-am înscris chiar și la cursuri de agilitate împreună. Mulțumim Adopt-a-Buddy!"
-                        </p>
-                        <p class="text-muted fw-bold mb-0">— Mihai & Toby</p>
-                    </div>
-                </div>
-            </div>
-
-        </div> <div class="text-center mt-5 mb-4">
-        <h4 class="fw-bold mb-3">Ești gata să scrii propria poveste?</h4>
-        <a asp-controller="Animals" asp-action="Index" class="btn btn-warning btn-lg fw-bold px-5 py-3 rounded-pill shadow-sm">Găsește-ți Prietenul Acum</a>
+    <!-- Butonul dinamic functional cerut in screenshot -->
+    <div class="mt-5">
+        <h5 class="fw-bold mb-3">Ești gata să scrii propria poveste?</h5>
+        <a asp-controller="Animals" asp-action="Index" class="btn btn-warning btn-lg fw-bold px-5 py-3 rounded-pill shadow-sm">
+            Găsește-ți Prietenul Acum
+        </a>
     </div>
-
-</main>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+</div>

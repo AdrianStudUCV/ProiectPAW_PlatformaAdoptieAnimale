@@ -10,13 +10,19 @@ namespace modelMVC.Controllers
 
         private readonly IAnimalService _animalService;
         private readonly IContactMessageService _contactService;
+        private readonly IAdoptionStoryService _storyService;
+
 
 
         // Injectam serviciul prin constructor 
-        public HomeController(IAnimalService animalService, IContactMessageService contactService)
+        public HomeController(
+        IAnimalService animalService,
+        IContactMessageService contactService,
+        IAdoptionStoryService storyService) 
         {
             _animalService = animalService;
             _contactService = contactService;
+            _storyService = storyService; 
         }
 
         public async Task<IActionResult> Index()
@@ -39,9 +45,11 @@ namespace modelMVC.Controllers
             return View();
         }
 
-        public IActionResult Povesti()
+        public async Task<IActionResult> Povesti()
         {
-            return View();
+            // Preluam povestile si le trimitem catre View
+            var stories = await _storyService.GetAllStoriesAsync();
+            return View(stories);
         }
 
         // --- AFISARE FORMULAR GOL (GET) ---
