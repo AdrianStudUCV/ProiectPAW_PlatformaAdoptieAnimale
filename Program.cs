@@ -1,5 +1,6 @@
 using AdoptABuddy.Models;
 using Microsoft.EntityFrameworkCore;
+using modelMVC.Models;
 using modelMVC.Repositories;
 using modelMVC.Services;
 
@@ -13,6 +14,10 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 builder.Services.AddScoped<IRepository<Shelter>, ShelterRepository>();
 builder.Services.AddScoped<IShelterService, ShelterService>();
+
+builder.Services.AddScoped<IRepository<ContactMessage>, ContactMessageRepository>();
+builder.Services.AddScoped<IContactMessageService, ContactMessageService>();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
