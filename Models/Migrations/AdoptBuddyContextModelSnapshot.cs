@@ -153,6 +153,40 @@ namespace modelMVC.Migrations
                     b.ToTable("Shelters");
                 });
 
+            modelBuilder.Entity("modelMVC.Models.AdoptionStory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AdopterName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("AdoptionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("AnimalName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StoryText")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AdoptionStories");
+                });
+
             modelBuilder.Entity("modelMVC.Models.ContactMessage", b =>
                 {
                     b.Property<int>("Id")
