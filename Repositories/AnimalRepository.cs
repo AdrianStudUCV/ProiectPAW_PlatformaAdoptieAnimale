@@ -1,17 +1,24 @@
 ﻿using AdoptABuddy.Models;
 using Microsoft.EntityFrameworkCore;
+using modelMVC.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
 namespace modelMVC.Repositories
 {
-    public class AnimalRepository : IRepository<Animal>
+    public class AnimalRepository : Repository<Animal>
     {
-        private readonly AdoptBuddyContext _context;
-        public AnimalRepository(AdoptBuddyContext context) { _context = context; }
+        public AnimalRepository(AdoptBuddyContext context) : base(context)
+        {
+        }
 
-        public async Task<IEnumerable<Animal>> GetAllAsync() => await _context.Animals.Include(a => a.Category).Include(a => a.Shelter).ToListAsync();
-        public async Task<Animal> GetByIdAsync(int id) => await _context.Animals.FindAsync(id);
-        public async Task AddAsync(Animal entity) => await _context.Animals.AddAsync(entity);
-        public void Update(Animal entity) => _context.Animals.Update(entity);
-        public void Delete(Animal entity) => _context.Animals.Remove(entity);
-        public async Task SaveAsync() => await _context.SaveChangesAsync();
+        // Suprascriem DOAR metoda de get pentru a adauga Includes
+        public override async Task<IEnumerable<Animal>> GetAllAsync()
+        {
+            return await _dbSet
+                .Include(a => a.Category)
+                .Include(a => a.Shelter)
+                .ToListAsync();
+        }
     }
 }

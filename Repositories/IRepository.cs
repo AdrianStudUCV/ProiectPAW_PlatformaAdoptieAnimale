@@ -1,4 +1,7 @@
-﻿namespace modelMVC.Repositories
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace modelMVC.Repositories
 {
     public interface IRepository<T> where T : class
     {
