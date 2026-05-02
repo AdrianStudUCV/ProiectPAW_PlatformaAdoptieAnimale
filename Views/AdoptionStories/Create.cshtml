@@ -1,0 +1,55 @@
+﻿@model modelMVC.Models.AdoptionStory
+
+@{
+    ViewData["Title"] = "Adaugă Poveste";
+}
+
+<h1>Adaugă o Poveste Fericita Nouă</h1>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="AnimalName" class="control-label">Nume Animal</label>
+                <input asp-for="AnimalName" class="form-control" />
+                <span asp-validation-for="AnimalName" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="AdopterName" class="control-label">Nume Adoptator</label>
+                <input asp-for="AdopterName" class="form-control" />
+                <span asp-validation-for="AdopterName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="AdoptionDate" class="control-label">Data Adopției</label>
+                <input asp-for="AdoptionDate" type="date" class="form-control" />
+                <span asp-validation-for="AdoptionDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="ImageUrl" class="control-label">Link Poză (Ex: /images/nume_poza.jpg)</label>
+                <input asp-for="ImageUrl" class="form-control" />
+            </div>
+
+            <div class="form-group mb-4">
+                <label asp-for="StoryText" class="control-label">Povestea</label>
+                <textarea asp-for="StoryText" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="StoryText" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Salvează Povestea" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-secondary ms-2">Înapoi la Listă</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

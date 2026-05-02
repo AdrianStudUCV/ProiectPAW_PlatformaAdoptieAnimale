@@ -1,0 +1,35 @@
+﻿@model IEnumerable<modelMVC.Models.AdoptionStory>
+
+@{
+    ViewData["Title"] = "Administrare Povești";
+}
+
+<h1>Administrare Povești Fericite</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Adaugă o Poveste Nouă</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Animal</th>
+            <th>Adoptator</th>
+            <th>Data</th>
+            <th>Acțiuni</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.AnimalName</td>
+                <td>@item.AdopterName</td>
+                <td>@item.AdoptionDate.ToShortDateString()</td>
+                <td>
+                    <!-- Momentan implementam doar Create si Index. Aici se pot pune pe viitor butoane de Edit/Delete -->
+                    <span class="text-success">Salvat</span>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

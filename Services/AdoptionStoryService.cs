@@ -19,5 +19,11 @@ namespace modelMVC.Services
             // Preluam toate povestile din baza de date
             return await _repository.GetAllAsync();
         }
+
+        public async Task CreateStoryAsync(AdoptionStory story)
+        {
+            await _repository.AddAsync(story);
+            await _repository.SaveAsync();
+        }
     }
 }

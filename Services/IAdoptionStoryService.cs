@@ -7,5 +7,6 @@ namespace modelMVC.Services
     public interface IAdoptionStoryService
     {
         Task<IEnumerable<AdoptionStory>> GetAllStoriesAsync();
+        Task CreateStoryAsync(AdoptionStory story);
     }
 }
