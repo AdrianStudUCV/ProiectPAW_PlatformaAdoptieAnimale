@@ -9,11 +9,14 @@ namespace modelMVC.Controllers
     {
 
         private readonly IAnimalService _animalService;
+        private readonly IContactMessageService _contactService;
 
-        // Injectam serviciul prin constructor [cite: 215]
-        public HomeController(IAnimalService animalService)
+
+        // Injectam serviciul prin constructor 
+        public HomeController(IAnimalService animalService, IContactMessageService contactService)
         {
             _animalService = animalService;
+            _contactService = contactService;
         }
 
         public async Task<IActionResult> Index()
@@ -41,9 +44,33 @@ namespace modelMVC.Controllers
             return View();
         }
 
+        // --- AFISARE FORMULAR GOL (GET) ---
+        [HttpGet]
         public IActionResult Contact()
         {
             return View();
+        }
+
+        // --- PRIMIRE SI SALVARE DATE (POST) ---
+        [HttpPost]
+        [ValidateAntiForgeryToken] // Protectie impotriva atacurilor CSRF
+        public async Task<IActionResult> Contact(ContactMessage model)
+        {
+            // 1. Verificam daca validatile din clasa Model sunt respectate
+            if (!ModelState.IsValid)
+            {
+                // Daca nu sunt respectate (ex: email gresit), ii trimitem inapoi formularul cu erorile marcate
+                return View(model);
+            }
+
+            // 2. Daca totul e corect, trimitem mesajul catre serviciu pentru salvare
+            await _contactService.SendMessageAsync(model);
+
+            // 3. Afisam un mesaj de succes temporar (TempData)
+            TempData["SuccessMessage"] = "Mesajul tău a fost trimis cu succes! Vom reveni în curând.";
+
+            // 4. Resetam formularul
+            return RedirectToAction(nameof(Contact));
         }
 
         public IActionResult ProfilAnimal()
