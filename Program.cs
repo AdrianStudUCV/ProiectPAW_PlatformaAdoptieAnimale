@@ -5,7 +5,7 @@ using modelMVC.Repositories;
 using modelMVC.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-// Adauga aceste linii pentru a inregistra Repository-urile si Serviciile
+//linii pentru a inregistra Repository-urile si Serviciile
 builder.Services.AddScoped<IRepository<Animal>, AnimalRepository>();
 builder.Services.AddScoped<IAnimalService, AnimalService>();
 

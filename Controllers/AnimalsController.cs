@@ -46,10 +46,21 @@ namespace modelMVC.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Details(int id)
+        // GET: Animals/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
-            var animal = await _animalService.GetAnimalById(id);
-            if (animal == null) return NotFound();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var animal = await _animalService.GetAnimalById(id.Value);
+
+            if (animal == null)
+            {
+                return NotFound();
+            }
+
             return View(animal);
         }
         // --- EDITARE (GET) - Afiseaza formularul cu datele incarcate ---

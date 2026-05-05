@@ -35,6 +35,7 @@ namespace modelMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(MedicalRecord record)
         {
+            ModelState.Remove("Animal");
             if (ModelState.IsValid)
             {
                 await _medicalService.CreateRecordAsync(record);
