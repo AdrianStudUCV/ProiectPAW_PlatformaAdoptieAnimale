@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Despre Noi";
+}
+
+<div class="container mt-5 mb-5">
+    <!-- Titlul Paginii -->
+    <div class="text-center mb-5">
+        <h1 class="fw-bold text-dark">Unde ne găsești? 🐾</h1>
+        <p class="text-muted fs-5">Suntem mereu bucuroși de oaspeți. Vino să-ți cunoști viitorul prieten!</p>
+    </div>
+
+    <div class="row g-4 align-items-stretch">
+        
+        <!-- Caseta cu Informatii -->
+        <div class="col-lg-5">
+            <div class="card border-0 shadow-sm rounded-4 h-100" style="background-color: #fffaf0;">
+                <div class="card-body p-5 d-flex flex-column justify-content-center">
+                    
+                    <h3 class="fw-bold mb-4" style="color: #333;">Adăpostul Adopt-a-Buddy Craiova</h3>
+                    
+                    <p class="fs-6 mb-4 text-secondary lh-lg">
+                        Misiunea noastră este să oferim o a doua șansă animalelor abandonate. Echipa noastră este dedicată salvării, îngrijirii și plasării acestora în familii iubitoare. Te așteptăm cu drag!
+                    </p>
+
+                    <ul class="list-unstyled fs-5 text-dark mt-2">
+                        <li class="mb-4 d-flex align-items-start">
+                            <span class="fs-2 me-3 lh-1">📍</span>
+                            <div>
+                                <strong>Adresa noastră:</strong><br />
+                                <span class="fs-6 text-muted">Bulevardul Decebal, Nr. 100, Craiova, Dolj</span>
+                            </div>
+                        </li>
+                        <li class="mb-4 d-flex align-items-start">
+                            <span class="fs-2 me-3 lh-1">📞</span>
+                            <div>
+                                <strong>Sună-ne:</strong><br />
+                                <a href="tel:+40700123456" class="text-decoration-none fw-bold text-dark">0700 123 456</a>
+                            </div>
+                        </li>
+                        <li class="mb-4 d-flex align-items-start">
+                            <span class="fs-2 me-3 lh-1">🕒</span>
+                            <div>
+                                <strong>Program Vizite:</strong><br />
+                                <span class="fs-6 text-muted">Luni - Vineri: 10:00 - 18:00<br />Sâmbătă: 10:00 - 14:00</span>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-auto pt-4 text-center">
+                        <a asp-controller="Home" asp-action="Contact" class="btn btn-warning btn-lg rounded-pill fw-bold shadow-sm px-5">Scrie-ne un mesaj</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Caseta cu Harta -->
+        <div class="col-lg-7">
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100 min-vh-50">
+                <!-- Codul Embed generat de Google Maps pentru Craiova -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d89851.04276722883!2d23.731057404396347!3d44.31862568600021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4752d70c1e194ec1%3A0xc6cb6da1a182b8a0!2sCraiova!5e0!3m2!1sen!2sro!4v1700000000000!5m2!1sen!2sro"
+                        width="100%"
+                        height="100%"
+                        style="border:0; min-height: 450px;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+
+    </div>
+</div>

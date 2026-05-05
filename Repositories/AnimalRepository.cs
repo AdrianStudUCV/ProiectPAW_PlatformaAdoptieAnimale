@@ -12,13 +12,13 @@ namespace modelMVC.Repositories
         {
         }
 
-        // Suprascriem DOAR metoda de get pentru a adauga Includes
-        public override async Task<IEnumerable<Animal>> GetAllAsync()
+        // Suprascriem metoda de GetById pentru a aduce si datele din celelalte tabele
+        public override async Task<Animal> GetByIdAsync(int id)
         {
             return await _dbSet
                 .Include(a => a.Category)
                 .Include(a => a.Shelter)
-                .ToListAsync();
+                .FirstOrDefaultAsync(a => a.Id == id);
         }
     }
 }

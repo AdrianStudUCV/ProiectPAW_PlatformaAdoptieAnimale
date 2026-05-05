@@ -32,11 +32,16 @@ namespace modelMVC.Controllers
         }
 
         // --- CREARE (CREATE) - Afiseaza formularul ---
+        // GET: Animals/Create
         public async Task<IActionResult> Create()
         {
-            // Folosim serviciile pentru a popula meniurile Dropdown cu Numele categoriilor
-            ViewData["CategoryId"] = new SelectList(await _categoryService.GetAllCategories(), "Id", "Name");
-            ViewData["ShelterId"] = new SelectList(await _shelterService.GetAllShelters(), "Id", "Name");
+            // Luam categoriile si adaposturile din baza de date
+            var categories = await _categoryService.GetAllCategories(); 
+            var shelters = await _shelterService.GetAllShelters();      
+
+            // Le punem intr-un ViewBag sub forma de SelectList (pentru dropdown)
+            ViewBag.CategoryId = new SelectList(categories, "Id", "Name");
+            ViewBag.ShelterId = new SelectList(shelters, "Id", "Name");
 
             return View();
         }

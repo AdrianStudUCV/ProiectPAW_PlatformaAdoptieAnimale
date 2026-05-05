@@ -58,7 +58,10 @@ namespace modelMVC.Controllers
         {
             return View();
         }
-
+        public IActionResult DespreNoi()
+        {
+            return View();
+        }
         // --- PRIMIRE SI SALVARE DATE (POST) ---
         [HttpPost]
         [ValidateAntiForgeryToken] // Protectie impotriva atacurilor CSRF

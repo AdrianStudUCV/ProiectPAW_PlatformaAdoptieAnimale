@@ -17,6 +17,14 @@
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
+           
+            <div class="form-group mb-3">
+                <label asp-for="CategoryId" class="control-label fw-bold">Specie</label>
+                <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.CategoryId">
+                    <option value="">-- Alege Specia --</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Age" class="control-label"></label>
                 <input asp-for="Age" class="form-control" />
@@ -36,9 +44,13 @@
                 <label asp-for="CategoryId" class="control-label"></label>
                 <select asp-for="CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
             </div>
-            <div class="form-group">
-                <label asp-for="ShelterId" class="control-label"></label>
-                <select asp-for="ShelterId" class ="form-control" asp-items="ViewBag.ShelterId"></select>
+            
+            <div class="form-group mb-3">
+                <label asp-for="ShelterId" class="control-label fw-bold">Adăpost</label>
+                <select asp-for="ShelterId" class="form-select" asp-items="ViewBag.ShelterId">
+                    <option value="">-- Alege Adăpostul --</option>
+                </select>
+                <span asp-validation-for="ShelterId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

@@ -1,48 +1,97 @@
 ﻿@model AdoptABuddy.Models.Animal
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Profil - " + Model.Name;
 }
 
-<h1>Details</h1>
+<div class="container-fluid p-0 mt-4 mb-5">
+    
+    <!-- Partea de Sus: Banner Galben si Poza -->
+    <div class="row g-0 align-items-stretch shadow-sm" style="min-height: 450px;">
+        <!-- Mesajul de intampinare -->
+        <div class="col-md-6 d-flex flex-column justify-content-center p-5" style="background-color: #ffc107; color: #333;">
+            <h1 class="display-4 fw-bold mb-4">Salut, eu sunt @Model.Name!</h1>
+            <p class="fs-4 lh-base">
+                Sunt un @(Model.Category?.Name ?? "animal") în vârstă de @Model.Age ani de la @(Model.Shelter?.Name ?? "adăpost") și îmi caut familia pentru totdeauna. Te rog să citești profilul meu mai jos pentru a afla mai multe despre mine.
+            </p>
+        </div>
+        <!-- Poza animalului -->
+        <div class="col-md-6 p-0 position-relative">
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <img src="@Model.ImageUrl" alt="@Model.Name" class="img-fluid w-100 h-100" style="object-fit: cover;">
+            }
+            else
+            {
+                <!-- Daca nu are poza pusa, afisam un fundal gri -->
+                <div class="w-100 h-100 d-flex justify-content-center align-items-center bg-secondary text-white">
+                    <span class="fs-4">Fără poză</span>
+                </div>
+            }
+        </div>
+    </div>
 
-<div>
-    <h4>Animal</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Age)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Shelter)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Shelter.Name)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <!-- Partea de Jos: Sidebar si Descriere -->
+    <div class="row g-0 mt-4">
+        
+        <!-- Bara din stanga (Informatii rapide) -->
+        <div class="col-md-4 p-5" style="background-color: #fffaf0; color: #333;">
+            <h3 class="fw-bold mb-5 text-dark">Informații despre @Model.Name</h3>
+
+            <ul class="list-unstyled fs-5 text-dark">
+                <li class="mb-4 d-flex align-items-center">
+                    <span class="fs-3 me-3">🐾</span>
+                    <span><strong>Specie:</strong> @(Model.Category?.Name ?? "Necunoscută")</span>
+                </li>
+                <li class="mb-4 d-flex align-items-center">
+                    <span class="fs-3 me-3">🎂</span>
+                    <span><strong>Vârstă:</strong> @Model.Age ani</span>
+                </li>
+                <li class="mb-4 d-flex align-items-center">
+                    <span class="fs-3 me-3">🏠</span>
+                    <span><strong>Adăpost:</strong> @(Model.Shelter?.Name ?? "Necunoscut")</span>
+                </li>
+                <li class="mb-4 d-flex align-items-center">
+                    <span class="fs-3 me-3">📍</span>
+                    <span><strong>Referință:</strong> #@Model.Id</span>
+                </li>
+            </ul>
+
+            <!-- Casuta din stanga jos (Galben mai intens) -->
+            <div class="mt-5 p-4 text-center shadow-sm rounded-4" style="background-color: #ffca2c; color: #333;">
+                <h5 class="fw-bold m-0">Ajută-l pe @Model.Name să-și găsească o casă distribuind această pagină!</h5>
+            </div>
+        </div>
+
+        <!-- Continutul principal (Despre mine) -->
+        <div class="col-md-8 p-5">
+            <h1 class="fw-bold mb-4 text-dark">Despre mine</h1>
+
+            <div class="fs-5 lh-lg text-secondary mb-5">
+                <!-- Aici se va afisa campul de Descriere al animalului -->
+                @if (!string.IsNullOrEmpty(Model.Description))
+                {
+                    <p>@Model.Description</p>
+                }
+                else
+                {
+                    <p>Momentan nu am o descriere foarte detaliată, dar abia aștept să te cunosc personal la adăpost!</p>
+                }
+            </div>
+
+            <div class="mt-5">
+                <!-- Butonul de Adoptie galben si rotunjit -->
+                <a asp-controller="Home" asp-action="Contact" class="btn btn-warning btn-lg fw-bold text-dark px-5 py-3 shadow rounded-pill">
+                    Adoptă-l pe @Model.Name
+                </a>
+            </div>
+
+            <div class="mt-4">
+                <a asp-action="Index" class="text-decoration-none fw-bold text-dark opacity-75">
+                    &larr; Înapoi la galeria cu animale
+                </a>
+            </div>
+        </div>
+
+    </div>
 </div>
