@@ -68,6 +68,26 @@
             <h1 class="fw-bold mb-4 text-dark">Despre mine</h1>
 
             <div class="fs-5 lh-lg text-secondary mb-5">
+                <!-- Istoric Medical -->
+                <h3 class="fw-bold mb-3 text-dark mt-5">Istoric Medical 🩺</h3>
+                @if (Model.MedicalRecords != null && Model.MedicalRecords.Any())
+                {
+                    <ul class="list-group list-group-flush mb-4">
+                        @foreach (var record in Model.MedicalRecords.OrderByDescending(r => r.DateAdministered))
+                        {
+                            <li class="list-group-item bg-transparent px-0 d-flex justify-content-between align-items-center">
+                                <span class="fs-5 text-dark">@record.TreatmentName</span>
+                                <span class="badge bg-success rounded-pill px-3 py-2">@record.DateAdministered.ToShortDateString()</span>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <div class="alert alert-light border border-warning text-dark rounded-3">
+                        Nu există încă înregistrări medicale pentru @Model.Name.
+                    </div>
+                }
                 <!-- Aici se va afisa campul de Descriere al animalului -->
                 @if (!string.IsNullOrEmpty(Model.Description))
                 {

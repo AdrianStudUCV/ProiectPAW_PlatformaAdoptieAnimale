@@ -1,5 +1,7 @@
 ﻿using modelMVC.Models;
 using modelMVC.Repositories;
+using System.Collections.Generic;
+using System.Linq; //sort
 using System.Threading.Tasks;
 
 namespace modelMVC.Services
@@ -8,7 +10,6 @@ namespace modelMVC.Services
     {
         private readonly IRepository<ContactMessage> _repository;
 
-        // Injectam Repository-ul generic pentru mesaje
         public ContactMessageService(IRepository<ContactMessage> repository)
         {
             _repository = repository;
@@ -18,6 +19,24 @@ namespace modelMVC.Services
         {
             await _repository.AddAsync(message);
             await _repository.SaveAsync();
+        }
+
+        // Metoda noua care preia mesajele si le sorteaza
+        public async Task<IEnumerable<ContactMessage>> GetAllMessagesAsync()
+        {
+            var messages = await _repository.GetAllAsync();
+            return messages.OrderByDescending(m => m.CreatedAt);
+        }
+
+        // Cauta mesajul dupa ID si il sterge
+        public async Task DeleteMessageAsync(int id)
+        {
+            var message = await _repository.GetByIdAsync(id);
+            if (message != null)
+            {
+                _repository.Delete(message);
+                await _repository.SaveAsync(); // Salvam modificarea in baza de date
+            }
         }
     }
 }

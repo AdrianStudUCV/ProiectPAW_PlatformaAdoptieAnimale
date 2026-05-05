@@ -22,6 +22,8 @@ namespace AdoptABuddy.Models
 
         // Colectii catre tabelele copil
         public ICollection<MedicalRecord>? MedicalRecords { get; set; }
+        // Un animal poate avea mai multe inregistrari medicale (vaccinuri, tratamente)
+      
         public ICollection<AdoptionApplication>? AdoptionApplications { get; set; }
     }
 }

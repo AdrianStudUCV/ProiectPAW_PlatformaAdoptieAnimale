@@ -18,6 +18,7 @@ namespace modelMVC.Repositories
             return await _dbSet
                 .Include(a => a.Category)
                 .Include(a => a.Shelter)
+                .Include(a => a.MedicalRecords)
                 .FirstOrDefaultAsync(a => a.Id == id);
         }
     }

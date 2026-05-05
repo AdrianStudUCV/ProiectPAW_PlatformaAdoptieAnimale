@@ -1,0 +1,68 @@
+﻿@model IEnumerable<modelMVC.Models.ContactMessage>
+
+@{
+    ViewData["Title"] = "Inbox Mesaje";
+}
+
+<div class="container mt-5 mb-5">
+    
+    <div class="text-center mb-5">
+        <h1 class="fw-bold text-dark">Inbox Mesaje 📬</h1>
+        <p class="text-muted fs-5">Aici poți citi toate mesajele trimise de vizitatori prin formularul de contact.</p>
+    </div>
+
+    <!-- Cardul principal -->
+    <div class="card border-0 shadow-sm rounded-4" style="background-color: #fffaf0;">
+        <div class="card-body p-4 p-md-5">
+            
+            @if (!Model.Any())
+            {
+                <!-- Daca baza de date e goala -->
+                <div class="alert alert-warning text-center rounded-3 fs-5">
+                    Nu ai primit niciun mesaj încă. Când cineva va folosi formularul de contact, mesajul va apărea aici!
+                </div>
+            }
+            else
+            {
+                <!-- Tabelul cu mesaje -->
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-warning">
+                            <tr>
+                                <th>Data Primirii</th>
+                                <th>Nume Expeditor</th>
+                                <th>Email</th>
+                                <th>Mesaj</th>
+                                <th class="text-end">Acțiuni</th> <!-- Am adaugat capul de tabel -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var msg in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <span class="badge bg-secondary rounded-pill">@msg.CreatedAt.ToString("dd MMM yyyy, HH:mm")</span>
+                                    </td>
+                                    <td class="fw-bold text-dark">@msg.Name</td>
+                                    <td>
+                                        <a href="mailto:@msg.Email" class="text-decoration-none" style="color: #0dcaf0;">@msg.Email</a>
+                                    </td>
+                                    <td class="text-muted" style="max-width: 400px; white-space: pre-wrap;">@msg.Message</td>
+                                    
+                                    <!-- Butonul de stergere -->
+                                    <td class="text-end">
+                                        <form asp-action="Delete" asp-route-id="@msg.Id" method="post" onsubmit="return confirm('Ești sigur că vrei să ștergi acest mesaj?');">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger rounded-pill fw-bold">Șterge 🗑️</button>
+                                        </form>
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            
+        </div>
+    </div>
+</div>
