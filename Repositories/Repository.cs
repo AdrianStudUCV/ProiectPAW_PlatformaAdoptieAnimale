@@ -1,6 +1,6 @@
 ﻿using AdoptABuddy.Models;
 using Microsoft.EntityFrameworkCore;
-using modelMVC.Models; // Ajusteaza namespace-ul la proiectul tau
+using modelMVC.Models; 
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
