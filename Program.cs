@@ -27,9 +27,6 @@ builder.Services.AddScoped<IMedicalRecordService, MedicalRecordService>();
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-    .AddEntityFrameworkStores<AdoptBuddyContext>()
-    .AddDefaultTokenProviders();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -38,7 +35,20 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AdoptBuddyContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// Configurare ASP.NET Core Identity cu setari de parola conform instructiunilor din laborator
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+{
+    options.Password.RequireDigit = true;            // Sa contina cifre 
+    options.Password.RequiredLength = 6;             // Lungime minima 
+    options.Password.RequireNonAlphanumeric = false; // Fara caractere speciale obligatorii 
+    options.Password.RequireUppercase = true;        // Sa contina litere mari 
+    options.Password.RequireLowercase = false;       // Fara litere mici obligatorii 
+})
+.AddEntityFrameworkStores<AdoptBuddyContext>()
+.AddDefaultTokenProviders();
 
+// Inregistram Serviciul nostru personalizat de Autentificare
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 
 var app = builder.Build();
@@ -53,6 +63,14 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
+
+// CRITIC: Autentificarea trebuie sa fie intotdeauna INAINTEA Autorizarii!
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.UseAuthorization();
 

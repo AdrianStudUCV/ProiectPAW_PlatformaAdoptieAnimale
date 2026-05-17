@@ -4,7 +4,12 @@ namespace modelMVC.Models
 {
     public class LoginViewModel
     {
-        [Required][EmailAddress] public string Email { get; set; }
-        [Required][DataType(DataType.Password)] public string Password { get; set; }
+        [Required(ErrorMessage = "Adresa de email este obligatorie.")]
+        [EmailAddress(ErrorMessage = "Introduceți o adresă de email validă.")]
+        public string Email { get; set; }
+
+        [Required(ErrorMessage = "Parola este obligatorie.")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
     }
 }
