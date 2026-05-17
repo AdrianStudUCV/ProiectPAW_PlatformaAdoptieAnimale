@@ -1,4 +1,5 @@
 using AdoptABuddy.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using modelMVC.Models;
 using modelMVC.Repositories;
@@ -23,6 +24,12 @@ builder.Services.AddScoped<IAdoptionStoryService, AdoptionStoryService>();
 
 builder.Services.AddScoped<IRepository<MedicalRecord>, MedicalRecordRepository>();
 builder.Services.AddScoped<IMedicalRecordService, MedicalRecordService>();
+
+builder.Services.AddScoped<IAuthService, AuthService>();
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<AdoptBuddyContext>()
+    .AddDefaultTokenProviders();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

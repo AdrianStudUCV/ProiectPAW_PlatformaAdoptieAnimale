@@ -1,4 +1,5 @@
 ﻿using AdoptABuddy.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using modelMVC.Models;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace modelMVC.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class MedicalRecordsController : Controller
     {
         private readonly IMedicalRecordService _medicalService;

@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using modelMVC.Models;
 
 namespace AdoptABuddy.Models
 {
-    public class AdoptBuddyContext : DbContext
+    public class AdoptBuddyContext : IdentityDbContext<ApplicationUser>
     {
         public AdoptBuddyContext(DbContextOptions<AdoptBuddyContext> options) : base(options)
         {

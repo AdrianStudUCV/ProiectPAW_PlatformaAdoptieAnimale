@@ -1,4 +1,5 @@
 ﻿using AdoptABuddy.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace modelMVC.Controllers
 {
+
+    [Authorize(Roles = "Admin")]
+    
     public class AnimalsController : Controller
     {
         // Aducem toate cele 3 servicii pentru a indeplini cerinta profesorului (Fara Context direct!)

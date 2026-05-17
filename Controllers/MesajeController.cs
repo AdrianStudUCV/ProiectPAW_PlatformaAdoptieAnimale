@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using modelMVC.Services;
 using System.Threading.Tasks;
 
 namespace modelMVC.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class MesajeController : Controller
     {
         private readonly IContactMessageService _messageService;
