@@ -1,0 +1,74 @@
+﻿@model modelMVC.Models.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Creează un cont nou";
+}
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            
+            <div class="text-center mb-4">
+                <h1 class="fw-bold text-dark">Alătură-te comunității! 🐾</h1>
+                <p class="text-muted">Creează-ți un cont pentru a gestiona adăpostul sau pentru a adopta un prieten.</p>
+            </div>
+
+            <div class="card shadow-sm border-0 rounded-4" style="background-color: #fffaf0;">
+                <div class="card-body p-4 p-md-5">
+                    
+                    <form asp-action="Register" method="post" enctype="multipart/form-data">
+                        
+                        <div asp-validation-summary="ModelOnly" class="text-danger small mb-3 fw-bold"></div>
+
+                        <div class="form-group mb-4">
+                            <label asp-for="Email" class="control-label fw-bold text-dark mb-2">Adresa ta de Email</label>
+                            <input asp-for="Email" class="form-control rounded-pill px-3 py-2 border-warning" placeholder="nume@domeniu.com" />
+                            <span asp-validation-for="Email" class="text-danger small ms-2"></span>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label asp-for="Password" class="control-label fw-bold text-dark mb-2">Parolă</label>
+                            <input asp-for="Password" class="form-control rounded-pill px-3 py-2 border-warning" placeholder="Minim 6 caractere, o literă mare și o cifră" />
+                            <span asp-validation-for="Password" class="text-danger small ms-2"></span>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label asp-for="Role" class="control-label fw-bold text-dark mb-2">Tip Utilizator (Rol)</label>
+                            <select asp-for="Role" class="form-select rounded-pill px-3 py-2 border-warning">
+                                <option value="">-- Selectează rolul --</option>
+                                <option value="User">Utilizator Normal (Adoptator)</option>
+                                <option value="Admin">Administrator Adăpost</option>
+                            </select>
+                            <span asp-validation-for="Role" class="text-danger small ms-2"></span>
+                        </div>
+
+                        <div class="form-group mb-5">
+                            <label asp-for="ProfilePicture" class="control-label fw-bold text-dark mb-2">Încarcă o Poză de Profil</label>
+                            <input asp-for="ProfilePicture" type="file" class="form-control rounded-pill border-warning bg-white" accept="image/*" />
+                            <span asp-validation-for="ProfilePicture" class="text-danger small ms-2"></span>
+                            <div class="form-text text-muted small ms-2 mt-1">Lăsați gol dacă doriți avatarul implicit.</div>
+                        </div>
+
+                        <div class="d-grid gap-3">
+                            <button type="submit" class="btn btn-warning btn-lg rounded-pill fw-bold text-dark shadow-sm py-2">
+                                Înregistrează-te 🚀
+                            </button>
+                            <div class="text-center mt-2">
+                                <span class="text-muted">Ai deja un cont deschis?</span>
+                                <a asp-action="Login" class="text-decoration-none fw-bold text-dark ms-1 opacity-75">Autentifică-te aici</a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

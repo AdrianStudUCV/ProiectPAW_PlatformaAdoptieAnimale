@@ -53,6 +53,12 @@ namespace modelMVC.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
         // POST: /Auth/Login
         [HttpPost]
         [ValidateAntiForgeryToken]

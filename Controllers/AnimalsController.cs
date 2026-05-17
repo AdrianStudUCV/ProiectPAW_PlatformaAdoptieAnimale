@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 namespace modelMVC.Controllers
 {
 
-    [Authorize(Roles = "Admin")]
+    
     
     public class AnimalsController : Controller
     {
-        // Aducem toate cele 3 servicii pentru a indeplini cerinta profesorului (Fara Context direct!)
+        
         private readonly IAnimalService _animalService;
         private readonly ICategoryService _categoryService;
         private readonly IShelterService _shelterService;
@@ -37,6 +37,7 @@ namespace modelMVC.Controllers
 
         // --- CREARE (CREATE) - Afiseaza formularul ---
         // GET: Animals/Create
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create()
         {
             // Luam categoriile si adaposturile din baza de date
@@ -67,7 +68,9 @@ namespace modelMVC.Controllers
 
             return View(animal);
         }
+
         // --- EDITARE (GET) - Afiseaza formularul cu datele incarcate ---
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id)
         {
             var animal = await _animalService.GetAnimalById(id);
@@ -80,6 +83,7 @@ namespace modelMVC.Controllers
 
             return View(animal);
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Animal animal)
@@ -94,6 +98,7 @@ namespace modelMVC.Controllers
             return View(animal);
         }
         // --- STERGERE (GET) - Afiseaza pagina unde te intreaba "Esti sigur?" ---
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var animal = await _animalService.GetAnimalById(id);
@@ -101,6 +106,7 @@ namespace modelMVC.Controllers
 
             return View(animal);
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -110,6 +116,7 @@ namespace modelMVC.Controllers
         }
 
         // --- CREARE (CREATE) - Salveaza datele in baza de date ---
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Animal animal)
