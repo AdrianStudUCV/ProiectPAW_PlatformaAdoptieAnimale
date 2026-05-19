@@ -10,5 +10,6 @@ namespace modelMVC.Services
         Task<SignInResult> LoginAsync(LoginViewModel model);
         Task LogoutAsync();
         Task<IdentityResult> UpdateProfileAsync(ApplicationUser user, ProfileViewModel model);
+        Task<IdentityResult> PromoteToAdminAsync(string email);
     }
 }

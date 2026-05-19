@@ -49,6 +49,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark fw-bold" asp-area="" asp-controller="Home" asp-action="DespreNoi">Despre Noi</a>
                         </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-danger fw-bold" asp-controller="Auth" asp-action="ManageUsers">🔑Admini</a>
+                            </li>
+                        }
                     </ul>
             
                     <ul class="navbar-nav ms-auto align-items-center">

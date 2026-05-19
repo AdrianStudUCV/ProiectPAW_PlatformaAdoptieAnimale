@@ -34,6 +34,7 @@ namespace modelMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
+            model.Role = "User"; // Toata lumea devine User automat la inregistrarea publica
             if (ModelState.IsValid)
             {
                 var result = await _authService.RegisterAsync(model);
@@ -144,6 +145,40 @@ namespace modelMVC.Controllers
             var currentUser = await _userManager.GetUserAsync(User);
             model.CurrentProfilePictureUrl = currentUser?.ProfilePictureUrl;
             return View(model);
+        }
+        // GET: /Auth/ManageUsers
+        [HttpGet]
+        [Authorize(Roles = "Admin")] // Crtic: Doar adminii au voie sa vada pagina asta!
+        public IActionResult ManageUsers()
+        {
+            return View();
+        }
+
+        // POST: /Auth/ManageUsers
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ManageUsers(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+            {
+                ModelState.AddModelError(string.Empty, "Te rugăm să introduci o adresă de email.");
+                return View();
+            }
+
+            var result = await _authService.PromoteToAdminAsync(email);
+            if (result.Succeeded)
+            {
+                TempData["SuccessMessage"] = $"Utilizatorul {email} a fost promovat la rolul de Administrator cu succes!";
+                return RedirectToAction("ManageUsers");
+            }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            return View();
         }
     }
 }

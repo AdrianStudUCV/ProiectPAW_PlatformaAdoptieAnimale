@@ -127,5 +127,23 @@ namespace modelMVC.Services
             // Salvam utilizatorul in baza de date
             return await _userManager.UpdateAsync(user);
         }
+        public async Task<IdentityResult> PromoteToAdminAsync(string email)
+        {
+            // Cautam utilizatorul in baza de date dupa email
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                return IdentityResult.Failed(new IdentityError { Description = "Utilizatorul cu acest email nu a fost găsit." });
+            }
+
+            // Verificam daca rolul de Admin exista, daca nu, il cream
+            if (!await _roleManager.RoleExistsAsync("Admin"))
+            {
+                await _roleManager.CreateAsync(new IdentityRole("Admin"));
+            }
+
+            // Îi adăugăm rolul de Admin
+            return await _userManager.AddToRoleAsync(user, "Admin");
+        }
     }
 }
