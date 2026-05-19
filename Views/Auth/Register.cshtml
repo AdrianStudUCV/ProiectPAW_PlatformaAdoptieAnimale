@@ -21,6 +21,12 @@
                         <div asp-validation-summary="ModelOnly" class="text-danger small mb-3 fw-bold"></div>
 
                         <div class="form-group mb-4">
+                            <label asp-for="FullName" class="control-label fw-bold text-dark mb-2">Numele tău complet</label>
+                            <input asp-for="FullName" class="form-control rounded-pill px-3 py-2 border-warning" placeholder="Ex: Popescu Ion" />
+                            <span asp-validation-for="FullName" class="text-danger small ms-2"></span>
+                        </div>
+
+                        <div class="form-group mb-4">
                             <label asp-for="Email" class="control-label fw-bold text-dark mb-2">Adresa ta de Email</label>
                             <input asp-for="Email" class="form-control rounded-pill px-3 py-2 border-warning" placeholder="nume@domeniu.com" />
                             <span asp-validation-for="Email" class="text-danger small ms-2"></span>

@@ -1,0 +1,91 @@
+﻿@model modelMVC.Models.ProfileViewModel
+
+@{
+    ViewData["Title"] = "Setări Profil";
+}
+
+<div class="container mt-5 mb-5">
+    <div class="text-center mb-5">
+        <h1 class="fw-bold text-dark">Profilul Tău ⚙️</h1>
+        <p class="text-muted fs-5">Aici îți poți schimba numele, poza de profil sau parola.</p>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show rounded-4 text-center shadow-sm" role="alert">
+            <strong>Super!</strong> @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="row g-4 justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0 rounded-4" style="background-color: #fffaf0;">
+                <div class="card-body p-4 p-md-5">
+                    
+                    <form asp-action="Profile" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-4 fw-bold"></div>
+
+                        <div class="row align-items-center mb-5">
+                            <div class="col-md-3 text-center mb-3 mb-md-0">
+                                <img src="@(string.IsNullOrEmpty(Model.CurrentProfilePictureUrl) ? "/images/profiles/default-avatar.png" : Model.CurrentProfilePictureUrl)"
+                                     class="rounded-circle border border-4 border-warning shadow-sm"
+                                     style="width: 120px; height: 120px; object-fit: cover;" alt="Poza de Profil">
+                            </div>
+                            
+                            <div class="col-md-9">
+                                <label asp-for="NewProfilePicture" class="control-label fw-bold text-dark mb-2">Încarcă o poză nouă</label>
+                                <input asp-for="NewProfilePicture" type="file" class="form-control rounded-pill border-warning bg-white" accept="image/*" />
+                                <span asp-validation-for="NewProfilePicture" class="text-danger small ms-2"></span>
+                            </div>
+                        </div>
+
+                        <hr class="text-warning mb-4" />
+
+                        <div class="form-group mb-4">
+                            <label asp-for="FullName" class="control-label fw-bold text-dark mb-2">Numele tău complet (Afișat în meniu)</label>
+                            <input asp-for="FullName" class="form-control rounded-pill px-3 py-2 border-warning" />
+                            <span asp-validation-for="FullName" class="text-danger small ms-2"></span>
+                        </div>
+
+                        <div class="p-4 rounded-4 mt-4 mb-4" style="background-color: #fcebb6;">
+                            <h5 class="fw-bold text-dark mb-3">🔒 Securitate (Schimbare Parolă)</h5>
+                            <p class="small text-muted mb-3">Completează aceste câmpuri DOAR dacă dorești să îți schimbi parola. Altfel, lasă-le goale.</p>
+
+                            <div class="form-group mb-3">
+                                <label asp-for="CurrentPassword" class="control-label fw-bold text-dark mb-2">Parola Curentă</label>
+                                <input asp-for="CurrentPassword" class="form-control rounded-pill px-3 py-2 bg-white" placeholder="••••••••" type="password" />
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 form-group mb-3">
+                                    <label asp-for="NewPassword" class="control-label fw-bold text-dark mb-2">Parola Nouă</label>
+                                    <input asp-for="NewPassword" class="form-control rounded-pill px-3 py-2 bg-white" placeholder="••••••••" type="password" />
+                                    <span asp-validation-for="NewPassword" class="text-danger small"></span>
+                                </div>
+                                <div class="col-md-6 form-group mb-3">
+                                    <label asp-for="ConfirmNewPassword" class="control-label fw-bold text-dark mb-2">Confirmă Parola Nouă</label>
+                                    <input asp-for="ConfirmNewPassword" class="form-control rounded-pill px-3 py-2 bg-white" placeholder="••••••••" type="password" />
+                                    <span asp-validation-for="ConfirmNewPassword" class="text-danger small"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-warning btn-lg rounded-pill fw-bold text-dark shadow-sm">
+                                Salvează Modificările 💾
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

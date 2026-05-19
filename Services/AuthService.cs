@@ -27,7 +27,8 @@ namespace modelMVC.Services
             var user = new ApplicationUser
             {
                 UserName = model.Email,
-                Email = model.Email
+                Email = model.Email,
+                FullName = model.FullName
             };
 
             // 1. Logica de stocare si salvare a imaginii de profil pe disc
@@ -89,6 +90,42 @@ namespace modelMVC.Services
         public async Task LogoutAsync()
         {
             await _signInManager.SignOutAsync();
+        }
+
+        public async Task<IdentityResult> UpdateProfileAsync(ApplicationUser user, ProfileViewModel model)
+        {
+            // Actualizare Nume Complet
+            user.FullName = model.FullName;
+            // 1. Actualizare Poza de Profil
+            if (model.NewProfilePicture != null && model.NewProfilePicture.Length > 0)
+            {
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "profiles");
+                if (!Directory.Exists(uploadsFolder)) Directory.CreateDirectory(uploadsFolder);
+
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + model.NewProfilePicture.FileName;
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await model.NewProfilePicture.CopyToAsync(fileStream);
+                }
+                user.ProfilePictureUrl = "/images/profiles/" + uniqueFileName;
+            }
+
+           
+
+            // 3. Schimbare Parola (daca a completat campurile)
+            if (!string.IsNullOrEmpty(model.CurrentPassword) && !string.IsNullOrEmpty(model.NewPassword))
+            {
+                var passResult = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+                if (!passResult.Succeeded)
+                {
+                    return passResult; // Returnam eroarea (ex: parola curenta e gresita)
+                }
+            }
+
+            // Salvam utilizatorul in baza de date
+            return await _userManager.UpdateAsync(user);
         }
     }
 }

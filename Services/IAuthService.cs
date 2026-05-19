@@ -9,5 +9,6 @@ namespace modelMVC.Services
         Task<IdentityResult> RegisterAsync(RegisterViewModel model);
         Task<SignInResult> LoginAsync(LoginViewModel model);
         Task LogoutAsync();
+        Task<IdentityResult> UpdateProfileAsync(ApplicationUser user, ProfileViewModel model);
     }
 }

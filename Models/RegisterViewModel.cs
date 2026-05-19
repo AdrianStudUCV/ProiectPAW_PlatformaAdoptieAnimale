@@ -5,6 +5,10 @@ namespace modelMVC.Models
 {
     public class RegisterViewModel
     {
+        [Required(ErrorMessage = "Numele complet este obligatoriu.")]
+        [Display(Name = "Nume Complet")]
+        public string FullName { get; set; }
+
         [Required(ErrorMessage = "Adresa de email este obligatorie.")]
         [EmailAddress(ErrorMessage = "Introduceți o adresă de email validă.")]
         public string Email { get; set; }

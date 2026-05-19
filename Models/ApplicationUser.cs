@@ -6,5 +6,6 @@ namespace modelMVC.Models
     public class ApplicationUser : IdentityUser
     {
         public string ProfilePictureUrl { get; set; } // Aici vom salva calea catre poza
+        public string FullName { get; set; } //  pentru numele real al utilizatorului
     }
 }
